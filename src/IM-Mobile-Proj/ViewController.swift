@@ -16,6 +16,25 @@ class ViewController: UIViewController {
     
     @IBAction func logIn(_ sender: Any) {
         //check if they can log in or not
+        
+        /*
+         let authService = Auth()
+         
+         let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+         if (error != nil) {
+         print("Error while logging in.")
+         } else {
+         print("response found!")
+         }
+         }
+         
+         do {
+         try authService.login(username: "test_username", password: "test_password", cb: loginCallback)
+         } catch {
+         print("An error was thrown")
+         }
+
+        */
     }
     
     @IBAction func newUser(_ sender: Any) {

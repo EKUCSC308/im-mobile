@@ -13,6 +13,9 @@
 		3F4BFE1720801D06005A9A45 /* IM_Mobile_Proj.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BFE1520801D06005A9A45 /* IM_Mobile_Proj.xcdatamodeld */; };
 		3F4BFE1920801D06005A9A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BFE1820801D06005A9A45 /* Assets.xcassets */; };
 		3F4BFE1C20801D06005A9A45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BFE1A20801D06005A9A45 /* LaunchScreen.storyboard */; };
+		3FB59C362092A1720042490C /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C332092A1720042490C /* Auth.swift */; };
+		3FB59C372092A1720042490C /* Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C342092A1720042490C /* Conversations.swift */; };
+		3FB59C382092A1720042490C /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C352092A1720042490C /* HttpRequestHelper.swift */; };
 		3FF4E8D72092802B002D30D6 /* chatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8D62092802B002D30D6 /* chatViewController.swift */; };
 		3FF4E8D920928698002D30D6 /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8D820928698002D30D6 /* chatTableViewCell.swift */; };
 		3FF4E8DD20929163002D30D6 /* messageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8DC20929163002D30D6 /* messageViewController.swift */; };
@@ -27,6 +30,9 @@
 		3F4BFE1820801D06005A9A45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F4BFE1B20801D06005A9A45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F4BFE1D20801D06005A9A45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FB59C332092A1720042490C /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		3FB59C342092A1720042490C /* Conversations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversations.swift; sourceTree = "<group>"; };
+		3FB59C352092A1720042490C /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		3FF4E8D62092802B002D30D6 /* chatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatViewController.swift; sourceTree = "<group>"; };
 		3FF4E8D820928698002D30D6 /* chatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewCell.swift; sourceTree = "<group>"; };
 		3FF4E8DC20929163002D30D6 /* messageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +68,7 @@
 		3F4BFE0D20801D06005A9A45 /* IM-Mobile-Proj */ = {
 			isa = PBXGroup;
 			children = (
+				3FB59C322092A1720042490C /* net */,
 				3FF4E8DC20929163002D30D6 /* messageViewController.swift */,
 				3F4BFE0E20801D06005A9A45 /* AppDelegate.swift */,
 				3F4BFE1020801D06005A9A45 /* ViewController.swift */,
@@ -74,6 +81,16 @@
 				3F4BFE1520801D06005A9A45 /* IM_Mobile_Proj.xcdatamodeld */,
 			);
 			path = "IM-Mobile-Proj";
+			sourceTree = "<group>";
+		};
+		3FB59C322092A1720042490C /* net */ = {
+			isa = PBXGroup;
+			children = (
+				3FB59C332092A1720042490C /* Auth.swift */,
+				3FB59C342092A1720042490C /* Conversations.swift */,
+				3FB59C352092A1720042490C /* HttpRequestHelper.swift */,
+			);
+			path = net;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,9 +166,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF4E8D920928698002D30D6 /* chatTableViewCell.swift in Sources */,
+				3FB59C382092A1720042490C /* HttpRequestHelper.swift in Sources */,
 				3F4BFE1120801D06005A9A45 /* ViewController.swift in Sources */,
 				3F4BFE0F20801D06005A9A45 /* AppDelegate.swift in Sources */,
 				3FF4E8D72092802B002D30D6 /* chatViewController.swift in Sources */,
+				3FB59C372092A1720042490C /* Conversations.swift in Sources */,
+				3FB59C362092A1720042490C /* Auth.swift in Sources */,
 				3FF4E8DD20929163002D30D6 /* messageViewController.swift in Sources */,
 				3F4BFE1720801D06005A9A45 /* IM_Mobile_Proj.xcdatamodeld in Sources */,
 			);
