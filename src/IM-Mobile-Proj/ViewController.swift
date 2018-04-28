@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SocketIO
 
 class ViewController: UIViewController {
     
@@ -17,6 +18,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameText: UITextField!
     
     @IBOutlet weak var passwordText: UITextField!
+    
+    let manager = SocketManager(socketURL: URL(string: "http://192.241.175.100:3002")!, config: [.log(true),.connectParams(["token": "....", "jwt": "..."])])
+    var socket:SocketIOClient!
     
     @IBAction func logIn(_ sender: Any) {
         //check if they can log in or not
@@ -94,7 +98,20 @@ class ViewController: UIViewController {
         loginbtn.backgroundColor = gold_dk
         newUserbtn.backgroundColor = gold_lt
         
+        self.socket = manager.defaultSocket
+        self.socket.on(clientEvent: .connect) {data, ack in
+            print("socket connected");
+        }
         
+        self.socket.on("event") {data, ack in
+            print("OCD Recieved");
+        }
+        
+        self.socket.on(clientEvent: .disconnect) {data, ack in
+            print("socket disconnected");
+        }
+        
+        self.socket.connect()
     }
 
     override func didReceiveMemoryWarning() {
