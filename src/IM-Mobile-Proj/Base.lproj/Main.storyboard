@@ -95,6 +95,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loginbtn" destination="MbA-PZ-c5i" id="W57-mQ-hwL"/>
+                        <outlet property="newUserbtn" destination="VaN-aH-5E7" id="veU-du-ad7"/>
                         <outlet property="passwordText" destination="yKI-SV-4xO" id="5Np-1S-N5P"/>
                         <outlet property="usernameText" destination="sxi-bC-6of" id="Ihg-uS-ljl"/>
                     </connections>

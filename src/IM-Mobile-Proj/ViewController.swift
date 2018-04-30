@@ -10,8 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
-
+    @IBOutlet weak var newUserbtn: UIButton!
+    
+    @IBOutlet weak var loginbtn: UIButton!
+    
     @IBOutlet weak var usernameText: UITextField!
     
     @IBOutlet weak var passwordText: UITextField!
@@ -85,6 +87,11 @@ class ViewController: UIViewController {
         let green =   hex(hex:  "#4ABF6D");
         
         self.view.backgroundColor = bg_grey
+        usernameText.backgroundColor = md_grey
+        passwordText.backgroundColor = md_grey
+        loginbtn.backgroundColor = gold_dk
+        newUserbtn.backgroundColor = gold_lt
+        
         
     }
 
