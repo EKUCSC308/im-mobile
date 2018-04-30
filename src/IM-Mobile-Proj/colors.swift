@@ -9,6 +9,8 @@
 import Foundation;
 import UIKit;
 
+//public class colorSheet: NSObject{
+
 public func hex (hex:String) -> UIColor {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
     
@@ -42,3 +44,5 @@ public let gold_lt = hex(hex:  "#E5D089");
 public let red =     hex(hex:  "#BF5757");
 public let blue =    hex(hex:  "#54B6EA");
 public let green =   hex(hex:  "#4ABF6D");
+    
+//}

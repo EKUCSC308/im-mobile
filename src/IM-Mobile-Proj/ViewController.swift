@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+
 
     @IBOutlet weak var usernameText: UITextField!
     
@@ -44,6 +46,46 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        ////////////////////// Color Handling /////////////////////////
+        
+        func hex (hex:String) -> UIColor {
+            var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+            
+            if (cString.hasPrefix("#")) {
+                cString.remove(at: cString.startIndex)
+            }
+            
+            if ((cString.count) != 6) {
+                return UIColor.gray
+            }
+            
+            var rgbValue:UInt32 = 0
+            Scanner(string: cString).scanHexInt32(&rgbValue)
+            
+            return UIColor(
+                red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                alpha: CGFloat(1.0)
+            )
+        }
+        
+        let bg_grey = hex(hex: "#454547")
+        
+        let md_grey = hex(hex:  "#79797C");
+        let lt_grey = hex(hex:  "#E0E0E5");
+        
+        let gold_dk = hex(hex:  "#DDB606");
+        let gold_lt = hex(hex:  "#E5D089");
+        
+        let red =     hex(hex:  "#BF5757");
+        let blue =    hex(hex:  "#54B6EA");
+        let green =   hex(hex:  "#4ABF6D");
+        
+        self.view.backgroundColor = bg_grey
+        
     }
 
     override func didReceiveMemoryWarning() {

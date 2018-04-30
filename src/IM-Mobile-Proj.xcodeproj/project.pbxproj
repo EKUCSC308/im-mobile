@@ -16,6 +16,7 @@
 		3FB59C362092A1720042490C /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C332092A1720042490C /* Auth.swift */; };
 		3FB59C372092A1720042490C /* Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C342092A1720042490C /* Conversations.swift */; };
 		3FB59C382092A1720042490C /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59C352092A1720042490C /* HttpRequestHelper.swift */; };
+		3FE7AD0B2097D37200CEFA58 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7AD0A2097D37200CEFA58 /* colors.swift */; };
 		3FF4E8D72092802B002D30D6 /* chatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8D62092802B002D30D6 /* chatViewController.swift */; };
 		3FF4E8D920928698002D30D6 /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8D820928698002D30D6 /* chatTableViewCell.swift */; };
 		3FF4E8DD20929163002D30D6 /* messageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4E8DC20929163002D30D6 /* messageViewController.swift */; };
@@ -33,6 +34,7 @@
 		3FB59C332092A1720042490C /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		3FB59C342092A1720042490C /* Conversations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversations.swift; sourceTree = "<group>"; };
 		3FB59C352092A1720042490C /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
+		3FE7AD0A2097D37200CEFA58 /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		3FF4E8D62092802B002D30D6 /* chatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatViewController.swift; sourceTree = "<group>"; };
 		3FF4E8D820928698002D30D6 /* chatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewCell.swift; sourceTree = "<group>"; };
 		3FF4E8DC20929163002D30D6 /* messageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				3F4BFE1A20801D06005A9A45 /* LaunchScreen.storyboard */,
 				3F4BFE1D20801D06005A9A45 /* Info.plist */,
 				3F4BFE1520801D06005A9A45 /* IM_Mobile_Proj.xcdatamodeld */,
+				3FE7AD0A2097D37200CEFA58 /* colors.swift */,
 			);
 			path = "IM-Mobile-Proj";
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF4E8D920928698002D30D6 /* chatTableViewCell.swift in Sources */,
+				3FE7AD0B2097D37200CEFA58 /* colors.swift in Sources */,
 				3FB59C382092A1720042490C /* HttpRequestHelper.swift in Sources */,
 				3F4BFE1120801D06005A9A45 /* ViewController.swift in Sources */,
 				3F4BFE0F20801D06005A9A45 /* AppDelegate.swift in Sources */,
