@@ -181,6 +181,7 @@
                         <viewLayoutGuide key="safeArea" id="QLc-BG-3kQ"/>
                     </view>
                     <connections>
+                        <outlet property="logoutbtn" destination="MmQ-e2-qcU" id="0LT-vp-RdA"/>
                         <outlet property="table" destination="CFW-EP-zv3" id="clY-7c-fqi"/>
                         <segue destination="p90-aN-Moy" kind="presentation" identifier="thisOne" id="RDO-bi-aJe"/>
                     </connections>
@@ -265,10 +266,10 @@
             </objects>
             <point key="canvasLocation" x="1869.5999999999999" y="690.40479760119945"/>
         </scene>
-        <!--View Controller-->
+        <!--New Chat View Controller-->
         <scene sceneID="Iai-Vl-Jme">
             <objects>
-                <viewController id="tve-YM-lrp" sceneMemberID="viewController">
+                <viewController id="tve-YM-lrp" customClass="NewChatViewController" customModule="IM_Mobile_Proj" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ikh-AD-zzW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -314,6 +315,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ugd-ze-3mF"/>
                     </view>
+                    <connections>
+                        <outlet property="backbtn" destination="l2m-Fv-lAK" id="5ra-Nw-m6v"/>
+                        <outlet property="chattokenfield" destination="HFF-Nh-fXL" id="hT4-1j-ACu"/>
+                        <outlet property="joinbtn" destination="yYa-1A-r8S" id="5qe-IR-fba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1F-iL-grS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -374,8 +380,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kQf-6K-uXw"/>
-        <segue reference="cFl-DO-fuW"/>
-        <segue reference="3c0-kw-1VH"/>
+        <segue reference="RDO-bi-aJe"/>
+        <segue reference="aA2-UU-Hqy"/>
+        <segue reference="hs6-Tx-wi4"/>
     </inferredMetricsTieBreakers>
 </document>
