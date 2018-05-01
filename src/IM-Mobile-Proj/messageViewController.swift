@@ -8,11 +8,15 @@
 
 import UIKit
 
-class messageViewController: UIViewController {
+class messageViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     var messages = [String]()
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         
@@ -31,37 +35,66 @@ class messageViewController: UIViewController {
         let green =   hex(hex:  "#4ABF6D");
         
         super.viewDidLoad()
-        //mainScrollView.frame = view.frame
+        
         messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
+        
+        
         
         for i in 0..<messages.count{
             let label = UILabel()
             label.text = messages[i]
-            print(label.text)
             //let yPos = 50 * CGFloat(i)
             label.backgroundColor = .yellow
             label.frame = CGRect(x: 0, y: CGFloat(50*i), width: 150, height: 35)
             
-            mainScrollView.contentSize.height = mainScrollView.contentSize.height + CGFloat(50)
-            print(mainScrollView.contentSize.height)
+            mainScrollView.contentSize.height += CGFloat(50)
             mainScrollView.addSubview(label)
-            //view.addSubview(mainScrollView)
             
         }
+        
+        mainScrollView.contentSize.height += CGFloat(50)
+        
+        textField.frame = CGRect(x:0, y: CGFloat(mainScrollView.contentSize.height-50), width: 300, height: 35)
+        
+        sendButton.frame = CGRect(x:300, y:CGFloat(mainScrollView.contentSize.height-50), width: 50, height: 35)
+        
+        mainScrollView.addSubview(textField)
+        
         view.addSubview(mainScrollView)
     }
     
-    @IBAction func doneTexting(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func endEditing(_ sender: Any) {
+    @IBAction func send(_ sender: Any) {
         view.endEditing(true)
+        let newText = textField.text
+        if(newText != nil){
+            let label = UILabel()
+            label.text = newText
+            label.backgroundColor = .yellow
+            
+            print(50*messages.count)
+            
+            label.frame = CGRect(x: 0, y: CGFloat(50*(messages.count)), width: 150, height: 35)
+            
+            print(mainScrollView.contentSize.height)
+            
+            mainScrollView.contentSize.height = mainScrollView.contentSize.height + CGFloat(50)
+            
+            print(mainScrollView.contentSize.height)
+            
+            mainScrollView.addSubview(label)
+        
+            textField.frame = CGRect(x:0, y: CGFloat(mainScrollView.contentSize.height-50), width: 300, height: 35)
+        
+            sendButton.frame = CGRect(x:300, y:CGFloat(mainScrollView.contentSize.height-50), width: 50, height: 35)
+            
+            messages.append((newText)!)
+            textField.text = ""
+        }
     }
-    
     
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,10 +127,18 @@ class messageViewController: UIViewController {
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         mainScrollView.contentInset = contentInsets
         mainScrollView.scrollIndicatorInsets = contentInsets
+        
+        var offset = mainScrollView.contentOffset
+        offset.y = mainScrollView.contentSize.height + mainScrollView.adjustedContentInset.bottom - mainScrollView.bounds.size.height
+        mainScrollView.setContentOffset(offset, animated: true)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         mainScrollView.contentInset = .zero
         mainScrollView.scrollIndicatorInsets = .zero
+        
+        var offset = mainScrollView.contentOffset
+        offset.y = mainScrollView.contentSize.height + mainScrollView.contentInset.bottom - mainScrollView.bounds.size.height
+        mainScrollView.setContentOffset(offset, animated: true)
     }
 }
