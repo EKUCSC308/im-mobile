@@ -38,13 +38,12 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
-        user = [""]
         
         for i in 0..<messages.count{
             let label = UILabel()
             label.text = messages[i]
             //let yPos = 50 * CGFloat(i)
-            if(sentUser == )
+            
             label.backgroundColor = .yellow
             label.frame = CGRect(x: 0, y: CGFloat(50*i), width: 150, height: 35)
             
