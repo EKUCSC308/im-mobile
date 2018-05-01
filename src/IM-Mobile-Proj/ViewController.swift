@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     
     @IBAction func logIn(_ sender: Any) {
         //check if they can log in or not
-        
-        /*
          let authService = Auth()
          
          let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
@@ -41,10 +39,61 @@ class ViewController: UIViewController {
          } catch {
          print("An error was thrown")
          }
-
-        */
     }
-    
+    @IBAction func reg(_ sender: Any) {
+        //check if they can log in or not
+        let authService = Auth()
+        
+        let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+            if (error != nil) {
+                print("Error while logging in.")
+            } else {
+                print("response found!")
+            }
+        }
+        
+        do {
+            try authService.login(username: "test_username", password: "test_password", cb: loginCallback)
+        } catch {
+            print("An error was thrown")
+        }
+    }
+    @IBAction func getconvo(_ sender: Any) {
+        //check if they can log in or not
+        let convoService = Conversations()
+        
+        let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+            if (error != nil) {
+                print("Error while logging in.")
+            } else {
+                print("response found!")
+            }
+        }
+        
+        do {
+            try authService.login(username: "test_username", password: "test_password", cb: loginCallback)
+        } catch {
+            print("An error was thrown")
+        }
+    }
+    @IBAction func create(_ sender: Any) {
+        //check if they can log in or not
+        let convoService = Conversations()
+        
+        let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+            if (error != nil) {
+                print("Error while logging in.")
+            } else {
+                print("response found!")
+            }
+        }
+        
+        do {
+            try authService.login(username: "test_username", password: "test_password", cb: loginCallback)
+        } catch {
+            print("An error was thrown")
+        }
+    }
     @IBAction func newUser(_ sender: Any) {
         
     }
@@ -112,6 +161,7 @@ class ViewController: UIViewController {
         }
         
         self.socket.connect()
+        let user = Auth
     }
 
     override func didReceiveMemoryWarning() {
