@@ -10,30 +10,54 @@ import UIKit
 
 class messageViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var mainScrollView: UIScrollView!
     
-    @IBOutlet weak var stackView: UIStackView!
-    
-    var messages = ["Hi","Heeeeyyyyyyy", "What up?", "Nothing", "Come over?", "Nahhhh", "Why?", "H8 u"]
+    var messages = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var thisy = 0;
-        for m in messages{
-            var dynamicLabel: UILabel = UILabel()
-            dynamicLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-            dynamicLabel.textColor = .black
-            //dynamicLabel.center = CGPoint(x: 160, y: thisy)
-            dynamicLabel.textAlignment = .center
-            dynamicLabel.text = m
-        //self.view.addSubview(dynamicLabel)
-            stackView.addArrangedSubview(dynamicLabel)
-            thisy += 22
+        //mainScrollView.frame = view.frame
+        
+        messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
+        
+        for i in 0..<messages.count{
+            let label = UILabel()
+            label.text = messages[i]
+            print(label.text)
+            //let yPos = 50 * CGFloat(i)
+            label.backgroundColor = .yellow
+            label.frame = CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100+CGFloat(50*i), width: 150, height: 35)
+            
+            mainScrollView.contentSize.height = mainScrollView.contentSize.height + CGFloat(50)
+            print(mainScrollView.contentSize.height)
+            mainScrollView.addSubview(label)
+            
+            var cnt = 0
+            for subView in mainScrollView.subviews{
+                // Here You can Get all subViews of your myScrollView.
+                // But For Check subview is specific UIClass such like label, button, textFiled etc.. write following code (here checking for example UILabel class).
+                
+                if subView is (UILabel) { // Check is SubView Class Is UILabel class?
+                    print(cnt)
+                    cnt = cnt+1
+                }
+            }
+            view.addSubview(mainScrollView)
+            for i in view.subviews{
+                print(i)
+            }
+            
         }
+        //self.view.addSubview(mainScrollView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews(){
+        super.viewWillLayoutSubviews()
+        mainScrollView.contentSize = CGSize(width: 375, height: 800)
     }
 }

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -195,15 +194,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Chat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-W6-UNB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  Chat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-W6-UNB">
                                 <rect key="frame" x="105" y="0.0" width="270" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.47181919639999997" green="0.47181919639999997" blue="0.47181919639999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOY-BY-wq8">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOY-BY-wq8">
                                 <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.47181919639999997" green="0.47181919639999997" blue="0.47181919639999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="  &lt;-">
                                     <color key="titleColor" red="0.98364137409999997" green="0.97731950059999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -212,51 +213,25 @@
                                     <segue destination="WC1-00-BP5" kind="presentation" identifier="toChat" id="xaw-iT-5hc"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4K-4e-bho">
-                                <rect key="frame" x="0.0" y="58" width="375" height="589"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f6v-Gm-XKP">
-                                        <rect key="frame" x="8" y="28" width="359" height="508"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ujn-Kb-LJF">
-                                                <rect key="frame" x="0.0" y="0.0" width="359" height="508"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Brj-5n-ujI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="508"/>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="508" id="6KO-HG-Cze"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="f6v-Gm-XKP" firstAttribute="trailing" secondItem="v4K-4e-bho" secondAttribute="trailingMargin" id="Dmy-OO-NDe"/>
-                                    <constraint firstItem="f6v-Gm-XKP" firstAttribute="centerX" secondItem="v4K-4e-bho" secondAttribute="centerX" id="dUC-vb-c6v"/>
-                                    <constraint firstItem="f6v-Gm-XKP" firstAttribute="top" secondItem="v4K-4e-bho" secondAttribute="top" constant="28" id="h7g-rK-bAI"/>
-                                    <constraint firstItem="f6v-Gm-XKP" firstAttribute="leading" secondItem="v4K-4e-bho" secondAttribute="leadingMargin" id="iI6-m4-VPa"/>
-                                    <constraint firstAttribute="bottom" secondItem="f6v-Gm-XKP" secondAttribute="bottom" constant="53" id="v5Y-VK-OjZ"/>
-                                </constraints>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjD-be-t3F">
+                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="p90-aN-Moy" id="c4l-Uy-oZV"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="leading" secondItem="uOY-BY-wq8" secondAttribute="leading" id="2CY-wr-J1c"/>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="leading" secondItem="2fX-ZW-5HK" secondAttribute="leading" id="IBQ-Nn-Dpb"/>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="top" secondItem="2fX-ZW-5HK" secondAttribute="top" constant="58" id="VUG-Ha-S0Z"/>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="top" secondItem="L0o-W6-UNB" secondAttribute="bottom" constant="8" symbolic="YES" id="Wxj-Tu-O0s"/>
-                            <constraint firstAttribute="bottom" secondItem="v4K-4e-bho" secondAttribute="bottom" constant="20" symbolic="YES" id="bca-xQ-5I7"/>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="trailing" secondItem="L0o-W6-UNB" secondAttribute="trailing" id="k9V-YX-e20"/>
-                            <constraint firstItem="v4K-4e-bho" firstAttribute="top" secondItem="uOY-BY-wq8" secondAttribute="bottom" constant="8" symbolic="YES" id="nVm-AP-QQp"/>
-                            <constraint firstAttribute="trailing" secondItem="v4K-4e-bho" secondAttribute="trailing" id="o5X-9p-RBn"/>
+                            <constraint firstItem="HjD-be-t3F" firstAttribute="width" secondItem="2fX-ZW-5HK" secondAttribute="width" id="EU2-7E-efJ"/>
+                            <constraint firstItem="HjD-be-t3F" firstAttribute="height" secondItem="2fX-ZW-5HK" secondAttribute="height" id="Jdk-jd-h79"/>
+                            <constraint firstItem="HjD-be-t3F" firstAttribute="centerX" secondItem="4JE-jz-BZx" secondAttribute="centerX" id="vkX-NM-Uix"/>
+                            <constraint firstItem="HjD-be-t3F" firstAttribute="centerY" secondItem="4JE-jz-BZx" secondAttribute="centerY" id="zLq-Yr-FG0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4JE-jz-BZx"/>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="v4K-4e-bho" id="8l2-hz-aId"/>
-                        <outlet property="stackView" destination="Brj-5n-ujI" id="dxG-Td-yy9"/>
+                        <outlet property="mainScrollView" destination="HjD-be-t3F" id="Yyr-g4-Who"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOa-Jx-V8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -367,7 +342,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="RDO-bi-aJe"/>
-        <segue reference="aA2-UU-Hqy"/>
+        <segue reference="xaw-iT-5hc"/>
         <segue reference="hs6-Tx-wi4"/>
     </inferredMetricsTieBreakers>
 </document>
