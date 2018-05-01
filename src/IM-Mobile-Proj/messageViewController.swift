@@ -13,6 +13,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     var messages = [String]()
+    var users = [String]()
     
     @IBOutlet weak var textField: UITextField!
     
@@ -37,13 +38,13 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
-        
-        
+        user = [""]
         
         for i in 0..<messages.count{
             let label = UILabel()
             label.text = messages[i]
             //let yPos = 50 * CGFloat(i)
+            if(sentUser == )
             label.backgroundColor = .yellow
             label.frame = CGRect(x: 0, y: CGFloat(50*i), width: 150, height: 35)
             
@@ -61,6 +62,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         mainScrollView.addSubview(textField)
         
         view.addSubview(mainScrollView)
+        bottomScroll()
     }
     
     @IBAction func send(_ sender: Any) {
@@ -90,6 +92,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
             messages.append((newText)!)
             textField.text = ""
         }
+        bottomScroll()
     }
     
 
@@ -116,29 +119,35 @@ class messageViewController: UIViewController, UITextFieldDelegate {
                                                object: nil)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        mainScrollView.contentInset = contentInsets
-        mainScrollView.scrollIndicatorInsets = contentInsets
-        
+    //scroll to the bottom
+    func bottomScroll(){
         var offset = mainScrollView.contentOffset
         offset.y = mainScrollView.contentSize.height + mainScrollView.adjustedContentInset.bottom - mainScrollView.bounds.size.height
         mainScrollView.setContentOffset(offset, animated: true)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    //function if the keyboard is opened
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        mainScrollView.contentInset = contentInsets
+        mainScrollView.scrollIndicatorInsets = contentInsets
+        
+        bottomScroll()
+    }
+    
+    
+    //function if the keyboard is closed
     @objc func keyboardWillHide(notification: NSNotification) {
         mainScrollView.contentInset = .zero
         mainScrollView.scrollIndicatorInsets = .zero
         
-        var offset = mainScrollView.contentOffset
-        offset.y = mainScrollView.contentSize.height + mainScrollView.contentInset.bottom - mainScrollView.bounds.size.height
-        mainScrollView.setContentOffset(offset, animated: true)
+        bottomScroll()
     }
 }
