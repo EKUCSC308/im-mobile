@@ -15,6 +15,21 @@ class messageViewController: UIViewController {
     var messages = [String]()
     
     override func viewDidLoad() {
+        
+        ////////////////////// Color Handling /////////////////////////
+        
+        let bg_grey = hex(hex: "#454547")
+        
+        let md_grey = hex(hex:  "#79797C");
+        let lt_grey = hex(hex:  "#E0E0E5");
+        
+        let gold_dk = hex(hex:  "#DDB606");
+        let gold_lt = hex(hex:  "#E5D089");
+        
+        let red =     hex(hex:  "#BF5757");
+        let blue =    hex(hex:  "#54B6EA");
+        let green =   hex(hex:  "#4ABF6D");
+        
         super.viewDidLoad()
         //mainScrollView.frame = view.frame
         

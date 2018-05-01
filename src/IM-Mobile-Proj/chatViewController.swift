@@ -12,10 +12,40 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var logoutbtn: UIButton!
+    //@IBOutlet weak var protolabel: UILabel!
+    
     var chats = ["Chat 1", "Chat 2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14","15","16"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        ////////////////////// Color Handling /////////////////////////
+        
+        let bg_grey = hex(hex: "#454547")
+        
+        let md_grey = hex(hex:  "#79797C");
+        let lt_grey = hex(hex:  "#E0E0E5");
+        
+        let gold_dk = hex(hex:  "#DDB606");
+        let gold_lt = hex(hex:  "#E5D089");
+        
+        let red =     hex(hex:  "#BF5757");
+        let blue =    hex(hex:  "#54B6EA");
+        let green =   hex(hex:  "#4ABF6D");
+        
+        self.view.backgroundColor = bg_grey
+        
+        table.backgroundColor = bg_grey
+        table.separatorColor = md_grey
+        
+        
+       // protolabel.backgroundColor = bg_grey
+        //protolabel.textColor = lt_grey
+        
+        logoutbtn.setTitleColor(red, for: .normal)
+        
         //code to populate chat array
     }
 
@@ -43,6 +73,8 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell") as? chatTableViewCell
         
         cell?.label.text = chats[indexPath.row]
+        cell?.label.backgroundColor = bg_grey
+        cell?.label.textColor = lt_grey
         
         return cell!
     }
