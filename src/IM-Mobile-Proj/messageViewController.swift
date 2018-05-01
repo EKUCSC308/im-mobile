@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SocketIO
 
 class messageViewController: UIViewController, UITextFieldDelegate {
     
@@ -63,6 +64,23 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(mainScrollView)
         bottomScroll()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.socket = manager.defaultSocket
+        self.socket.on(clientEvent: .connect) {data, ack in
+            print("socket connected");
+        }
+        
+        self.socket.on("event") {data, ack in
+            print("OCD Recieved");
+        }
+        
+        self.socket.on(clientEvent: .disconnect) {data, ack in
+            print("socket disconnected");
+        }
+        
+        self.socket.connect()
     }
     
     @IBAction func send(_ sender: Any) {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SocketIO
 
 class ViewController: UIViewController {
     
@@ -147,20 +146,6 @@ class ViewController: UIViewController {
         loginbtn.backgroundColor = gold_dk
         newUserbtn.backgroundColor = gold_lt
         
-        self.socket = manager.defaultSocket
-        self.socket.on(clientEvent: .connect) {data, ack in
-            print("socket connected");
-        }
-        
-        self.socket.on("event") {data, ack in
-            print("OCD Recieved");
-        }
-        
-        self.socket.on(clientEvent: .disconnect) {data, ack in
-            print("socket disconnected");
-        }
-        
-        self.socket.connect()
         let user = Auth
     }
 
