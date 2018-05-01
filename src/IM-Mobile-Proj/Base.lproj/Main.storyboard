@@ -216,21 +216,35 @@
                                     <segue destination="WC1-00-BP5" kind="presentation" identifier="toChat" id="xaw-iT-5hc"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjD-be-t3F">
-                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HjD-be-t3F">
+                                <rect key="frame" x="0.0" y="47" width="375" height="573"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="delegate" destination="p90-aN-Moy" id="c4l-Uy-oZV"/>
                                 </connections>
                             </scrollView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aD6-EE-WXD">
+                                <rect key="frame" x="16" y="628" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <action selector="endEditing:" destination="p90-aN-Moy" eventType="editingDidEnd" id="irk-WC-NB1"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfv-rx-7gx">
+                                <rect key="frame" x="0.0" y="47" width="375" height="573"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="doneTexting:" destination="p90-aN-Moy" eventType="touchUpInside" id="myg-7B-gCL"/>
+                                    <action selector="textDone:" destination="p90-aN-Moy" eventType="touchUpInside" id="3Rl-oB-cyf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="HjD-be-t3F" firstAttribute="width" secondItem="2fX-ZW-5HK" secondAttribute="width" id="EU2-7E-efJ"/>
-                            <constraint firstItem="HjD-be-t3F" firstAttribute="height" secondItem="2fX-ZW-5HK" secondAttribute="height" id="Jdk-jd-h79"/>
-                            <constraint firstItem="HjD-be-t3F" firstAttribute="centerX" secondItem="4JE-jz-BZx" secondAttribute="centerX" id="vkX-NM-Uix"/>
-                            <constraint firstItem="HjD-be-t3F" firstAttribute="centerY" secondItem="4JE-jz-BZx" secondAttribute="centerY" id="zLq-Yr-FG0"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4JE-jz-BZx"/>
                     </view>
                     <connections>
@@ -356,7 +370,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kQf-6K-uXw"/>
-        <segue reference="cFl-DO-fuW"/>
+        <segue reference="xaw-iT-5hc"/>
         <segue reference="hs6-Tx-wi4"/>
     </inferredMetricsTieBreakers>
 </document>
