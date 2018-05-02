@@ -98,6 +98,7 @@ class NewUserViewController: UIViewController {
         
         do {
             try authService.register(username: username.text!, password: password.text!, cb: registrationCallback)
+            self.performSegue(withIdentifier: "backToLogin", sender: nil)
         } catch {
             print("An error was thrown")
         }
