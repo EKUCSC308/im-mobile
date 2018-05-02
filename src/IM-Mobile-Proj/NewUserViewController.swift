@@ -90,8 +90,9 @@ class NewUserViewController: UIViewController {
                 alertController.addAction(defaultAction)                    // add action button into the alert window
                 
                 self.present(alertController, animated: true, completion: nil)
+                print("SERVICE: registration request failed")
             } else {
-                print("response found!")
+                print("SERVICE: registration response")
             }
         }
         

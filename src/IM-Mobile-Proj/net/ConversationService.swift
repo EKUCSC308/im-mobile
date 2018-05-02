@@ -25,11 +25,8 @@ class ConversationService {
     }
     
     func listConvo(cb: @escaping (_ response: ConversationsResponse?, _ error: String?) -> Void) throws {
-        let payload = try JSONSerialization.data(withJSONObject: [
-            ""
-            ])
         // Create the reqest
-        let request = httpRequest.createRequest(method: "GET", endpoint: "/conversations", payload: payload)
+        let request = httpRequest.createRequest(method: "GET", endpoint: "/conversations", payload: nil)
         
         // Create a new thread to handle the request
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
@@ -40,10 +37,12 @@ class ConversationService {
                     let listResponse = try JSONDecoder().decode(ConversationsResponse.self, from: data!)
                     cb(listResponse, nil)
                 } catch {
-                    cb(nil, "Could not create chat")
+                    cb(nil, "Could not list conversations.")
                 }
             }
         }
+        
+        print("SERVICE DEBUG: sending request to /conversations")
         
         // Execute the request on its own thread
         task.resume()

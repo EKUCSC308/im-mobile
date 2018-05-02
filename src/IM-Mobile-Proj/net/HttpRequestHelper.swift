@@ -21,7 +21,10 @@ class HttpRequestHelper {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Send username and password with request
-        request.httpBody = payload
+        if (payload != nil) {
+            request.httpBody = payload
+        }
+        
         return request
     }
     

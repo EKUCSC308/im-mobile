@@ -15,7 +15,7 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var logoutbtn: UIButton!
     //@IBOutlet weak var protolabel: UILabel!
     
-    var chats = ["Chat 1", "Chat 2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14","15","16"]
+    var chats: [Conversation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,28 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 
     override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let conversationService = ConversationService()
+        
+        let conversationListCallback: (_ response: ConversationsResponse?, _ error: String?) -> Void = { (response: ConversationsResponse?, error: String?) in
+            if (error != nil) {
+                print("SERVICE: conversations list request failed")
+            } else {
+                print("SERVICE: conversations list request successful", String(describing: response))
+                self.chats = response!.conversations
+                self.table.reloadData()
+            }
+        }
+        
+        do {
+            print("SERVICE DEBUG: sending conversation list request")
+            try conversationService.listConvo(cb: conversationListCallback)
+        } catch {
+            print("An error was thrown")
+        }
     }
     
     //number of sections
@@ -79,7 +100,7 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell") as? chatTableViewCell
         
-        cell?.label.text = chats[indexPath.row]
+        cell?.label.text = chats[indexPath.row].label
         cell?.label.backgroundColor = bg_grey
         cell?.label.textColor = lt_grey
         
