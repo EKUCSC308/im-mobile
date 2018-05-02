@@ -48,15 +48,24 @@ class NewChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func joinChat(_ sender: Any) {
+        //join the chat using the token
+        self.performSegue(withIdentifier: "joinChat", sender: nil)
     }
-    */
-
+    
+    
+    @IBAction func createChat(_ sender: Any) {
+        //code to get token for a new chat
+        let alertController = UIAlertController(title: "Chat Token",
+                                                message: "Your chat token is: ", //enter chat token here to print
+            preferredStyle: UIAlertControllerStyle.alert)
+        
+        let defaultAction = UIAlertAction(title: "OK",
+                                          style: UIAlertActionStyle.cancel,
+                                          handler: nil)
+        
+        alertController.addAction(defaultAction)                    // add action button into the alert window
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

@@ -105,7 +105,6 @@ class ViewController: UIViewController {
         loginbtn.backgroundColor = gold_dk
         newUserbtn.backgroundColor = gold_lt
         
-        // todo - chats should immediately open if JWT is in session storage
         openChatsIfLoggedIn()
     }
 
