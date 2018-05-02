@@ -73,6 +73,26 @@ class NewUserViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func registerAccount(_ sender: Any) {
+        let authService = AuthService()
+        
+        let registrationCallback: (_ response: RegisterResponse?, _ error: String?) -> Void = { (response: RegisterResponse?, error: String?) in
+            if (error != nil) {
+                print("Error while logging in.")
+            } else {
+                print("response found!")
+            }
+        }
+        
+        do {
+            try authService.register(username: username.text!, password: password.text!, cb: registrationCallback)
+        } catch {
+            print("An error was thrown")
+        }
+    }
+    
+    
+    
 
     /*
     // MARK: - Navigation

@@ -34,7 +34,6 @@
                                 </state>
                                 <connections>
                                     <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Rs-tY-Mcp"/>
-                                    <segue destination="WC1-00-BP5" kind="presentation" id="aA2-UU-Hqy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-aH-5E7">
@@ -98,6 +97,7 @@
                         <outlet property="newUserbtn" destination="VaN-aH-5E7" id="veU-du-ad7"/>
                         <outlet property="passwordText" destination="yKI-SV-4xO" id="5Np-1S-N5P"/>
                         <outlet property="usernameText" destination="sxi-bC-6of" id="Ihg-uS-ljl"/>
+                        <segue destination="WC1-00-BP5" kind="presentation" identifier="loginToConversations" id="cW4-Me-QzD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -344,6 +344,9 @@
                                 <state key="normal" title="Register">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerAccount:" destination="VTE-5S-TIK" eventType="touchUpInside" id="bu7-YX-wAJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnE-pO-twu">
                                 <rect key="frame" x="16" y="20" width="46" height="30"/>
@@ -371,7 +374,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kQf-6K-uXw"/>
-        <segue reference="xaw-iT-5hc"/>
+        <segue reference="cW4-Me-QzD"/>
         <segue reference="hs6-Tx-wi4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,26 +19,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     
     @IBAction func logIn(_ sender: Any) {
-        //check if they can log in or not
-        
-        /*
-         let authService = Auth()
+         let authService = AuthService()
          
          let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
-         if (error != nil) {
-         print("Error while logging in.")
-         } else {
-         print("response found!")
-         }
+             if (error != nil) {
+                print(error!)
+             } else {
+                print("response found!")
+                let defaults = UserDefaults.standard
+                defaults.set(response!.jwt, forKey: "jwt")
+                self.performSegue(withIdentifier: "loginToConversations", sender: nil)
+             }
          }
          
          do {
-         try authService.login(username: "test_username", password: "test_password", cb: loginCallback)
+            try authService.login(username: usernameText.text!, password: passwordText.text!, cb: loginCallback)
          } catch {
-         print("An error was thrown")
-         }
-
-        */
+            print("An error was thrown")
+        }
     }
     
     @IBAction func newUser(_ sender: Any) {
@@ -93,13 +91,19 @@ class ViewController: UIViewController {
         passwordText.backgroundColor = md_grey
         loginbtn.backgroundColor = gold_dk
         newUserbtn.backgroundColor = gold_lt
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let defaults = UserDefaults.standard
+        let jwt = defaults.string(forKey: "jwt")
+        
+        if (jwt != nil) {
+            performSegue(withIdentifier: "loginToConversations", sender: nil)
+        }
     }
 
 
