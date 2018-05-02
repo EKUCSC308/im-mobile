@@ -91,6 +91,9 @@ class ViewController: UIViewController {
         passwordText.backgroundColor = md_grey
         loginbtn.backgroundColor = gold_dk
         newUserbtn.backgroundColor = gold_lt
+        
+        // todo - chats should immediately open if JWT is in session storage
+        openChatsIfLoggedIn()
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +101,10 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        openChatsIfLoggedIn()
+    }
+
+    func openChatsIfLoggedIn() {
         let defaults = UserDefaults.standard
         let jwt = defaults.string(forKey: "jwt")
         
@@ -105,7 +112,5 @@ class ViewController: UIViewController {
             performSegue(withIdentifier: "loginToConversations", sender: nil)
         }
     }
-
-
 }
 

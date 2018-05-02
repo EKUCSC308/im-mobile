@@ -50,7 +50,25 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let conversationService = ConversationService()
+        
+        let conversationListCallback: (_ response: ConversationsResponse?, _ error: String?) -> Void = { (response: ConversationsResponse?, error: String?) in
+            if (error != nil) {
+                print(error!)
+            } else {
+                print("response found!")
+            }
+        }
+        
+        do {
+            // try conversationService.listConvo(cb: conversationListCallback)
+        } catch {
+            print("An error was thrown")
+        }
     }
     
     //number of sections
