@@ -78,9 +78,9 @@ class NewUserViewController: UIViewController {
         
         let registrationCallback: (_ response: RegisterResponse?, _ error: String?) -> Void = { (response: RegisterResponse?, error: String?) in
             if (error != nil) {
-                print("Error while logging in.")
+                print("SERVICE: registration request failed")
             } else {
-                print("response found!")
+                print("SERVICE: registration response")
             }
         }
         

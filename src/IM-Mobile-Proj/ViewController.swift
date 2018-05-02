@@ -25,7 +25,7 @@ class ViewController: UIViewController {
              if (error != nil) {
                 print(error!)
              } else {
-                print("response found!")
+                print("SERVICE: login successful")
                 let defaults = UserDefaults.standard
                 defaults.set(response!.jwt, forKey: "jwt")
                 self.performSegue(withIdentifier: "loginToConversations", sender: nil)
