@@ -23,7 +23,20 @@ class ViewController: UIViewController {
          
          let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
              if (error != nil) {
-                print(error!)
+                
+                let alertController = UIAlertController(title: "Error logging in",
+                                                        message: "You could not log in because: \(error)!",
+                                                        preferredStyle: UIAlertControllerStyle.alert)
+                
+                let defaultAction = UIAlertAction(title: "OK",
+                                                  style: UIAlertActionStyle.cancel,
+                                                  handler: nil)
+                
+                alertController.addAction(defaultAction)                    // add action button into the alert window
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                
              } else {
                 print("response found!")
                 let defaults = UserDefaults.standard

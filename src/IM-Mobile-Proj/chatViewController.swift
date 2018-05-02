@@ -48,6 +48,13 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //code to populate chat array
     }
+    
+    @IBAction func logOut(_ sender: UIButton) {
+        let defaults = UserDefaults.standard
+        UserDefaults.standard.removeObject(forKey: "jwt")
+        self.performSegue(withIdentifier: "logOut", sender: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

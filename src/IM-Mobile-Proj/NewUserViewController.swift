@@ -78,7 +78,18 @@ class NewUserViewController: UIViewController {
         
         let registrationCallback: (_ response: RegisterResponse?, _ error: String?) -> Void = { (response: RegisterResponse?, error: String?) in
             if (error != nil) {
-                print("Error while logging in.")
+                
+                let alertController = UIAlertController(title: "Error create user in",
+                                                        message: "You could not create user because: \(error)!",
+                    preferredStyle: UIAlertControllerStyle.alert)
+                
+                let defaultAction = UIAlertAction(title: "OK",
+                                                  style: UIAlertActionStyle.cancel,
+                                                  handler: nil)
+                
+                alertController.addAction(defaultAction)                    // add action button into the alert window
+                
+                self.present(alertController, animated: true, completion: nil)
             } else {
                 print("response found!")
             }
