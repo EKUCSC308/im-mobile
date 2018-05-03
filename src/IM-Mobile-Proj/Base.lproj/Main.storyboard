@@ -281,19 +281,7 @@
                                     <color key="titleColor" red="0.98364137409999997" green="0.97731950059999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="WC1-00-BP5" kind="presentation" id="cFl-DO-fuW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYa-1A-r8S">
-                                <rect key="frame" x="147" y="214" width="81" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.47181919639999997" green="0.47181919639999997" blue="0.47181919639999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="JOIN">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="joinChat:" destination="tve-YM-lrp" eventType="touchUpInside" id="qjj-cN-V2n"/>
-                                    <segue destination="p90-aN-Moy" kind="presentation" identifier="joinChat" id="kQf-6K-uXw"/>
+                                    <segue destination="WC1-00-BP5" kind="presentation" identifier="toChat" id="cFl-DO-fuW"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter chat token" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFF-Nh-fXL">
@@ -321,7 +309,6 @@
                     <connections>
                         <outlet property="backbtn" destination="l2m-Fv-lAK" id="5ra-Nw-m6v"/>
                         <outlet property="chattokenfield" destination="HFF-Nh-fXL" id="hT4-1j-ACu"/>
-                        <outlet property="joinbtn" destination="yYa-1A-r8S" id="5qe-IR-fba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1F-iL-grS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,8 +373,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kQf-6K-uXw"/>
-        <segue reference="xaw-iT-5hc"/>
+        <segue reference="cFl-DO-fuW"/>
         <segue reference="3c0-kw-1VH"/>
     </inferredMetricsTieBreakers>
 </document>

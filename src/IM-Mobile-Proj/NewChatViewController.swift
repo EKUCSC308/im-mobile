@@ -48,24 +48,36 @@ class NewChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func joinChat(_ sender: Any) {
-        //join the chat using the token
-        self.performSegue(withIdentifier: "joinChat", sender: nil)
-    }
-    
     
     @IBAction func createChat(_ sender: Any) {
-        //code to get token for a new chat
-        let alertController = UIAlertController(title: "Chat Token",
-                                                message: "Your chat token is: ", //enter chat token here to print
-            preferredStyle: UIAlertControllerStyle.alert)
+        let chatService = ConversationService()
         
-        let defaultAction = UIAlertAction(title: "OK",
-                                          style: UIAlertActionStyle.cancel,
-                                          handler: nil)
+        let chatCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+            if (error != nil) {
+                
+                let alertController = UIAlertController(title: "Error creating chat",
+                                                        message: "You could not create chat because: \(error)!",
+                    preferredStyle: UIAlertControllerStyle.alert)
+                
+                let defaultAction = UIAlertAction(title: "OK",
+                                                  style: UIAlertActionStyle.cancel,
+                                                  handler: nil)
+                
+                alertController.addAction(defaultAction)                    // add action button into the alert window
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+            } else {
+                print("SERVICE: Create chat successful")
+                self.performSegue(withIdentifier: "toChat", sender: nil)
+            }
+        }
         
-        alertController.addAction(defaultAction)                    // add action button into the alert window
-        
-        self.present(alertController, animated: true, completion: nil)
+        do {
+            try chatService.createConvo(label: chattokenfield.text!, cb: chatCallback)
+        } catch {
+            print("An error was thrown")
+        }
     }
 }
