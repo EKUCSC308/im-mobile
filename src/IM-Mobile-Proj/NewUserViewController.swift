@@ -9,8 +9,6 @@
 import UIKit
 
 class NewUserViewController: UIViewController {
-
-    
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -36,6 +34,7 @@ class NewUserViewController: UIViewController {
         let blue =    hex(hex:  "#54B6EA");
         let green =   hex(hex:  "#4ABF6D");
         
+        //setting the background colors
         self.view.backgroundColor = bg_grey
         username.backgroundColor = md_grey
         password.backgroundColor = md_grey
@@ -46,6 +45,7 @@ class NewUserViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //function to deal with the colors
     func hex (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -73,12 +73,14 @@ class NewUserViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //function to register the account
     @IBAction func registerAccount(_ sender: Any) {
         let authService = AuthService()
         
         let registrationCallback: (_ response: RegisterResponse?, _ error: String?) -> Void = { (response: RegisterResponse?, error: String?) in
-            if (error != nil) {
+            if (error != nil) { //if there was an error in registering
                 
+                //create an alert with the error
                 let alertController = UIAlertController(title: "Error create user in",
                                                         message: "You could not create user because: \(error)!",
                     preferredStyle: UIAlertControllerStyle.alert)
@@ -103,18 +105,4 @@ class NewUserViewController: UIViewController {
             print("An error was thrown")
         }
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

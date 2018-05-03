@@ -18,12 +18,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var passwordText: UITextField!
     
+    //when the user presses the log-in, check the credientials
     @IBAction func logIn(_ sender: Any) {
          let authService = AuthService()
          
          let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+            //if theres a problem logging in
             if (error != nil) {
                 
+                //create an alert to show the error
                 let alertController = UIAlertController(title: "Error logging in",
                                                         message: "You could not log in because: \(error)!",
                                                         preferredStyle: UIAlertControllerStyle.alert)
@@ -37,9 +40,10 @@ class ViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
                 
                 
-             } else {
+             } else { //log in was successful
                 print("SERVICE: login successful")
                 let defaults = UserDefaults.standard
+                //set the user defaults to save the information
                 defaults.set(response!.jwt, forKey: "jwt")
                 self.performSegue(withIdentifier: "loginToConversations", sender: nil)
              }
@@ -52,10 +56,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func newUser(_ sender: Any) {
-        
-    }
-    
+    //function to deal with colors
     func hex (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -99,6 +100,7 @@ class ViewController: UIViewController {
         let blue =    hex(hex:  "#54B6EA");
         let green =   hex(hex:  "#4ABF6D");
         
+        //setting all the colors
         self.view.backgroundColor = bg_grey
         usernameText.backgroundColor = md_grey
         passwordText.backgroundColor = md_grey
@@ -112,10 +114,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //just open the chat if they are logged in
     override func viewWillAppear(_ animated: Bool) {
         openChatsIfLoggedIn()
     }
 
+    //open the chat view with the information
     func openChatsIfLoggedIn() {
         let defaults = UserDefaults.standard
         let jwt = defaults.string(forKey: "jwt")

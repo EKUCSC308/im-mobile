@@ -63,6 +63,7 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         let conversationService = ConversationService()
         
+        //gettint hte list of conversatsions
         let conversationListCallback: (_ response: ConversationsResponse?, _ error: String?) -> Void = { (response: ConversationsResponse?, error: String?) in
             if (error != nil) {
                 print("SERVICE: conversations list request failed")
@@ -100,6 +101,8 @@ class chatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell") as? chatTableViewCell
         
+        cell?.backgroundColor = bg_grey
+        //setting the label in each row
         cell?.label.text = chats[indexPath.row].label
         cell?.label.backgroundColor = bg_grey
         cell?.label.textColor = lt_grey

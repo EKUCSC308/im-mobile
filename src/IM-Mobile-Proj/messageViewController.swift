@@ -29,9 +29,11 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var sendButton: UIButton!
     
+    //websocket manager
     let manager = SocketManager(socketURL: URL(string: "http://192.241.175.100:3002")!, config: [.log(true),.connectParams(["token": "....", "jwt": "..."])])
     var socket:SocketIOClient!
     
+    //class to create the message type
     class message{
         var incoming = false // true= incoming | false = outgoing
         var content  = "Your head hits the wall." //default placeholder text
@@ -60,28 +62,23 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         }
     
     override func viewDidLoad() {
-        
-        
-        
         ////////////////////// Color Handling /////////////////////////
         
         let bg_grey = hex(hex: "#454547")
         
         let md_grey = hex(hex:  "#79797C");
-        let lt_grey = hex(hex:  "#E0E0E5");
+        //let lt_grey = hex(hex:  "#E0E0E5");
         
         let gold_dk = hex(hex:  "#DDB606");
-        let gold_lt = hex(hex:  "#E5D089");
+        //let gold_lt = hex(hex:  "#E5D089");
         
-        let red =     hex(hex:  "#BF5757");
-        let blue =    hex(hex:  "#54B6EA");
-        let green =   hex(hex:  "#4ABF6D");
+        //let red =     hex(hex:  "#BF5757");
+        //let blue =    hex(hex:  "#54B6EA");
+        //let green =   hex(hex:  "#4ABF6D");
         
         
         
         super.viewDidLoad()
-        
-        messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
         
         objmessages = [
             message(text:"outgoing"),
@@ -89,12 +86,10 @@ class messageViewController: UIViewController, UITextFieldDelegate {
             message(text:"also outgoing")
         ]
         
-        //for i in 0..<messages.count {
+        //creating and adding a label to the scrollView
         for i in 0..<objmessages.count {
             let label = UILabel()
             label.text = "   "+objmessages[i].content
-            //let yPos = 50 * CGFloat(i)
-            
             
             label.textColor = UIColor.white
             
@@ -108,13 +103,16 @@ class messageViewController: UIViewController, UITextFieldDelegate {
 
                 }
             
+            //adjusting the scrollView size for the message
             mainScrollView.contentSize.height += CGFloat(50)
             mainScrollView.addSubview(label)
             mainScrollView.backgroundColor = bg_grey
             }
         
+        //adjusting the size of the scrollView for the textField
         mainScrollView.contentSize.height += CGFloat(50)
         
+        //adding the textField and button backt to the bottom of the scrollView
         textField.frame = CGRect(x:0, y: CGFloat(mainScrollView.contentSize.height-50), width: 300, height: 35)
         
         sendButton.frame = CGRect(x:300, y:CGFloat(mainScrollView.contentSize.height-50), width: 50, height: 35)
@@ -151,17 +149,13 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         // Executes when connection is inturrupted
         self.socket.on(clientEvent: .disconnect) {data, ack in
             print("SOCKET MANAGER: socket disconnected");
-        
-        
-
-
-            
-            
         }
         
         self.socket.connect()
     }
     
+    
+    //hitting the send button
     @IBAction func send(_ sender: Any) {
         view.endEditing(true)
         
@@ -173,6 +167,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         //    self.sendButton.isEnabled = true
         //}
         
+        //getting the text from the text field
         let newText = textField.text!
         
         let temp = message(text: newText)
@@ -188,6 +183,8 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
+    //rendering the message on the page
     func renderMessage(msg: message) {
         let label = UILabel()
         
@@ -258,6 +255,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //if there is an event
     func handleChatEvent(event: ChatEvent) {
         if (event.scope == "session") {
             // render non-message on UI
@@ -270,16 +268,23 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    //disconnect from the websocket if it is closed
     override func viewWillDisappear(_ animated: Bool) {
         self.socket.disconnect()
     }
     
+    
+    //function to register the keyboard notifications
     func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
+    //creating a notification for opening the keyboard
+    NotificationCenter.default.addObserver(self,
                                                selector:#selector(keyboardWillShow(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillShow,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
+       
+        //creating a notification for hiding the keyboard
+    NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
@@ -287,17 +292,18 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     //scroll to the bottom
     func bottomScroll(){
+        //changing the offset to the bottom
         var offset = mainScrollView.contentOffset
         offset.y = mainScrollView.contentSize.height + mainScrollView.adjustedContentInset.bottom - mainScrollView.bounds.size.height
         mainScrollView.setContentOffset(offset, animated: true)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    deinit { NotificationCenter.default.removeObserver(self)
     }
     
     //function if the keyboard is opened
     @objc func keyboardWillShow(notification: NSNotification) {
+        //move the scrollView up
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
         let keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
         let keyboardSize = keyboardInfo.cgRectValue.size
@@ -305,12 +311,14 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         mainScrollView.contentInset = contentInsets
         mainScrollView.scrollIndicatorInsets = contentInsets
         
+        //scroll the scrollView to the bottom (to show TextField)
         bottomScroll()
     }
     
     
     //function if the keyboard is closed
     @objc func keyboardWillHide(notification: NSNotification) {
+        //resetting the scrollView to the whole page
         mainScrollView.contentInset = .zero
         mainScrollView.scrollIndicatorInsets = .zero
         

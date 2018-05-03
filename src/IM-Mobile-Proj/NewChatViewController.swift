@@ -11,7 +11,6 @@ import UIKit
 class NewChatViewController: UIViewController {
 
     @IBOutlet weak var chattokenfield: UITextField!
-    @IBOutlet weak var joinbtn: UIButton!
     @IBOutlet weak var backbtn: UIButton!
     
     override func viewDidLoad() {
@@ -31,16 +30,13 @@ class NewChatViewController: UIViewController {
         let blue =    hex(hex:  "#54B6EA");
         let green =   hex(hex:  "#4ABF6D");
         
+        //setting the colors
         self.view.backgroundColor = bg_grey
         chattokenfield.backgroundColor = md_grey
         //password.backgroundColor = md_grey
-        joinbtn.backgroundColor = gold_dark
+        //joinbtn.backgroundColor = gold_dark
         backbtn.backgroundColor = md_grey
         backbtn.setTitleColor(gold_lt, for: .normal)
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,13 +44,14 @@ class NewChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //allowing the user to create a chat
     @IBAction func createChat(_ sender: Any) {
         let chatService = ConversationService()
         
         let chatCallback: (_ response: Conversation?, _ error: String?) -> Void = { (response: Conversation?, error: String?) in
-            if (error != nil) {
+            if (error != nil) { //if there is an error in the chat
                 
+                //create an alert to show the error
                 let alertController = UIAlertController(title: "Error creating chat",
                                                         message: "You could not create chat because: \(error)!",
                     preferredStyle: UIAlertControllerStyle.alert)

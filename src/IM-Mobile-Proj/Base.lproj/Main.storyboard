@@ -44,7 +44,6 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="newUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJJ-B4-0hN"/>
                                     <segue destination="VTE-5S-TIK" kind="presentation" id="BsA-mN-zEy"/>
                                 </connections>
                             </button>
@@ -375,7 +374,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xaw-iT-5hc"/>
+        <segue reference="cW4-Me-QzD"/>
         <segue reference="3c0-kw-1VH"/>
     </inferredMetricsTieBreakers>
 </document>
