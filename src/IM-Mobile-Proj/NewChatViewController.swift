@@ -52,7 +52,7 @@ class NewChatViewController: UIViewController {
     @IBAction func createChat(_ sender: Any) {
         let chatService = ConversationService()
         
-        let chatCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
+        let chatCallback: (_ response: Conversation?, _ error: String?) -> Void = { (response: Conversation?, error: String?) in
             if (error != nil) {
                 
                 let alertController = UIAlertController(title: "Error creating chat",
