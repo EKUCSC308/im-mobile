@@ -35,5 +35,14 @@ Navigate to the `/src` directory inside of a clone of this repo. Then execute th
 pod install
 ```
 
+## Step 3: Run the app
+The `pod install` command will generate a `IM-Mobile-Proj.xcworkspace` directory. The app must be opened through this project in order for xcode to recognize the third party libraries that were installed.
+
+From the project directory, run the following to open the project in xcode.
+
+```
+open IM-Mobile-Proj.xcworkspace
+```
+
 ## All set
 Continue development as normal.
