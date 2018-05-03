@@ -49,7 +49,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
         init(text: String){
             content = text
-            incoming = true
+            incoming = false
             user = "Unknown"
             }
         
@@ -85,9 +85,8 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
         objmessages = [
             message(text:"test1"),
-            message(text:"Dammit Bobby", userIn:"Aaron"),
-            message()
-            ]
+            message(text:"test2", userIn:"Aaron"),
+        ]
         
         //for i in 0..<messages.count {
         for i in 0..<objmessages.count {
@@ -98,15 +97,12 @@ class messageViewController: UIViewController, UITextFieldDelegate {
             
             label.textColor = UIColor.white
             
-            //TEST VARIABLE
-            let testbool = true
-            
             if( objmessages[i].incoming ){ //If the message was incoming
                 label.backgroundColor = gold_dk
                 label.frame = CGRect(x: 5, y: CGFloat(50*i), width: 150, height: 35)
                 }
             else{       // If the message was outgoing
-                label.backgroundColor = md_grey
+                label.backgroundColor = red
                 label.frame = CGRect(x: 220, y: CGFloat(45*i), width: 150, height: 35)
 
                 }
@@ -122,6 +118,8 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
         sendButton.frame = CGRect(x:300, y:CGFloat(mainScrollView.contentSize.height-50), width: 50, height: 35)
         
+        sendButton.backgroundColor = gold_dk
+        
         mainScrollView.addSubview(textField)
         
         view.addSubview(mainScrollView)
@@ -136,8 +134,6 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         
         self.socket.on("event") {data, ack in
             if let arr = data as? [[String: Any]] {
-                print("test")
-                
                 let eventResponse = ChatEvent(
                     content: arr[0]["content"]! as! String,
                     conversation_token: arr[0]["conversation_token"]! as! String,
@@ -163,36 +159,46 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
         let newText = textField.text
         if(newText != nil) {
-            renderMessage(message: newText!, isOwnMessage: true)
+            renderMessage(textmessage: newText!, isOwnMessage: true)
             textField.text = ""
             
-            // TODO >>>>>>>>>>>>>> emit to server (something like self.socket.emit('event, ChatEvent(...))
+            
         }
     }
     
-    func renderMessage(message: String, isOwnMessage: Bool) {
+    func renderMessage(textmessage: String, isOwnMessage: Bool) {
         let label = UILabel()
-        label.text = message
+        label.text = textmessage
+        
+        /*
+        label.frame = CGRect(x: 220, y: CGFloat(45*messages.count), width: 150, height: 35)
+        mainScrollView.addSubview(label)
+        messages.append(message)
+        bottomScroll()
+        */
+        
         label.backgroundColor = .yellow
         
-        print(50*messages.count)
-        
-        label.frame = CGRect(x: 0, y: CGFloat(50*(messages.count)), width: 150, height: 35)
-        
-        print(mainScrollView.contentSize.height)
-        
-        mainScrollView.contentSize.height = mainScrollView.contentSize.height + CGFloat(50)
-        
-        print(mainScrollView.contentSize.height)
-        
+        //Render Frame
+        label.frame = CGRect(x: 0, y: CGFloat(50*(objmessages.count)), width: 150, height: 35)
+        mainScrollView.contentSize.height += CGFloat(50)
         mainScrollView.addSubview(label)
         
-        textField.frame = CGRect(x:0, y: CGFloat(mainScrollView.contentSize.height-50), width: 300, height: 35)
+        
+        
+        messages.append(textmessage)
+        
+        let temp = message(text: textmessage)
+        
+        objmessages.append(temp)
+        
+        bottomScroll()
         
         sendButton.frame = CGRect(x:300, y:CGFloat(mainScrollView.contentSize.height-50), width: 50, height: 35)
         
-        messages.append(message)
-        bottomScroll()
+        textField.frame = CGRect(x:0, y: CGFloat(mainScrollView.contentSize.height-50), width: 300, height: 35)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -214,7 +220,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
             // render non-message on UI
         } else {
             // render message
-            renderMessage(message: event.content, isOwnMessage: false)
+            renderMessage(textmessage: event.content, isOwnMessage: false)
         }
     }
     

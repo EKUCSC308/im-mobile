@@ -33,7 +33,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Rs-tY-Mcp"/>
+                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="usc-rS-MF9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-aH-5E7">
@@ -232,7 +232,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-GZ-ZsV">
                                         <rect key="frame" x="333" y="582" width="34" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="send"/>
+                                        <state key="normal" title="send">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="send:" destination="p90-aN-Moy" eventType="touchUpInside" id="GHp-Ie-UOx"/>
                                         </connections>
@@ -373,7 +375,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cFl-DO-fuW"/>
+        <segue reference="xaw-iT-5hc"/>
         <segue reference="3c0-kw-1VH"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
          let authService = AuthService()
          
          let loginCallback: (_ response: LoginResponse?, _ error: String?) -> Void = { (response: LoginResponse?, error: String?) in
-             if (error != nil) {
+            if (error != nil) {
                 
                 let alertController = UIAlertController(title: "Error logging in",
                                                         message: "You could not log in because: \(error)!",
