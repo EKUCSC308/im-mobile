@@ -21,6 +21,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     
+    var objmessages = [message]()
     var messages = [String]()
     var users = [String]()
     
@@ -30,6 +31,35 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     let manager = SocketManager(socketURL: URL(string: "http://192.241.175.100:3002")!, config: [.log(true),.connectParams(["token": "....", "jwt": "..."])])
     var socket:SocketIOClient!
+    
+    class message{
+        var incoming = false // true= incoming | false = outgoing
+        
+        
+        var content  = "Your head hits the wall." //default placeholder text
+        var user  = "You're charged with death fuel" //default placeholder text
+        
+    
+        
+        init(){
+            incoming = false
+            content = "Empty"
+            user = "Nobody"
+            }
+        
+        init(text: String){
+            content = text
+            incoming = true
+            user = "Unknown"
+            }
+        
+        init(text: String, userIn: String) {
+            content = text
+            incoming = true
+            user = userIn
+            }
+        
+        }
     
     override func viewDidLoad() {
         
@@ -47,21 +77,44 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         let blue =    hex(hex:  "#54B6EA");
         let green =   hex(hex:  "#4ABF6D");
         
+        
+        
         super.viewDidLoad()
         
         messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
         
-        for i in 0..<messages.count{
+        objmessages = [
+            message(text:"test1"),
+            message(text:"Dammit Bobby", userIn:"Aaron"),
+            message()
+            ]
+        
+        //for i in 0..<messages.count {
+        for i in 0..<objmessages.count {
             let label = UILabel()
-            label.text = messages[i]
+            label.text = "   "+objmessages[i].content
             //let yPos = 50 * CGFloat(i)
             
-            label.backgroundColor = .yellow
-            label.frame = CGRect(x: 0, y: CGFloat(50*i), width: 150, height: 35)
+            
+            label.textColor = UIColor.white
+            
+            //TEST VARIABLE
+            let testbool = true
+            
+            if( objmessages[i].incoming ){ //If the message was incoming
+                label.backgroundColor = gold_dk
+                label.frame = CGRect(x: 5, y: CGFloat(50*i), width: 150, height: 35)
+                }
+            else{       // If the message was outgoing
+                label.backgroundColor = md_grey
+                label.frame = CGRect(x: 220, y: CGFloat(45*i), width: 150, height: 35)
+
+                }
             
             mainScrollView.contentSize.height += CGFloat(50)
             mainScrollView.addSubview(label)
-        }
+            mainScrollView.backgroundColor = bg_grey
+            }
         
         mainScrollView.contentSize.height += CGFloat(50)
         
