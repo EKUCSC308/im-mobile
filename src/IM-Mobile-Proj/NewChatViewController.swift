@@ -9,7 +9,7 @@
 import UIKit
 
 class NewChatViewController: UIViewController {
-
+    //outlets
     @IBOutlet weak var chattokenfield: UITextField!
     @IBOutlet weak var backbtn: UIButton!
     
