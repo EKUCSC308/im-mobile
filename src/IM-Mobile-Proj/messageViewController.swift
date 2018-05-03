@@ -34,11 +34,9 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     class message{
         var incoming = false // true= incoming | false = outgoing
-        
-        
         var content  = "Your head hits the wall." //default placeholder text
-        var user  = "You're charged with death fuel" //default placeholder text
-        
+        var user  = "You're charged with death fuel." //default placeholder text
+                    //The ecstacy's cruel.
     
         
         init(){
@@ -63,6 +61,8 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
+        
+        
         ////////////////////// Color Handling /////////////////////////
         
         let bg_grey = hex(hex: "#454547")
@@ -84,8 +84,9 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         messages = ["Heyyy","Hi","hjof","message","what.","more","messages","so","what","why","ism't", "this","working"]
         
         objmessages = [
-            message(text:"test1"),
-            message(text:"test2", userIn:"Aaron"),
+            message(text:"outgoing"),
+            message(text:"incoming", userIn:"Aaron"),
+            message(text:"also outgoing")
         ]
         
         //for i in 0..<messages.count {
@@ -102,7 +103,7 @@ class messageViewController: UIViewController, UITextFieldDelegate {
                 label.frame = CGRect(x: 5, y: CGFloat(50*i), width: 150, height: 35)
                 }
             else{       // If the message was outgoing
-                label.backgroundColor = red
+                label.backgroundColor = md_grey
                 label.frame = CGRect(x: 220, y: CGFloat(45*i), width: 150, height: 35)
 
                 }
@@ -150,6 +151,12 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         // Executes when connection is inturrupted
         self.socket.on(clientEvent: .disconnect) {data, ack in
             print("SOCKET MANAGER: socket disconnected");
+        
+        
+
+
+            
+            
         }
         
         self.socket.connect()
@@ -157,18 +164,35 @@ class messageViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func send(_ sender: Any) {
         view.endEditing(true)
-        let newText = textField.text
-        if(newText != nil) {
-            renderMessage(textmessage: newText!, isOwnMessage: true)
+        
+        //DO NOT ALLOW USER TO SEND NULL MESSAGE
+        // If the textfield is empty, disable the send button.
+       // if self.textField.text == "" {
+         //   self.sendButton.isEnabled = false}
+        //else{ // if the textfield is occupied
+        //    self.sendButton.isEnabled = true
+        //}
+        
+        let newText = textField.text!
+        
+        let temp = message(text: newText)
+        temp.incoming = false
+        
+        if(newText != nil) {//If there is no text present, give empty string
+            
+            //send message obj to render fx
+            renderMessage(msg: temp)
+            //renderMessage(textmessage: newText!, isOwnMessage: true)
             textField.text = ""
-            
-            
-        }
+            }
+        
     }
     
-    func renderMessage(textmessage: String, isOwnMessage: Bool) {
+    func renderMessage(msg: message) {
         let label = UILabel()
-        label.text = textmessage
+        
+        //label.text = textmessage
+        label.text = "   "+msg.content
         
         /*
         label.frame = CGRect(x: 220, y: CGFloat(45*messages.count), width: 150, height: 35)
@@ -177,20 +201,39 @@ class messageViewController: UIViewController, UITextFieldDelegate {
         bottomScroll()
         */
         
-        label.backgroundColor = .yellow
         
         //Render Frame
-        label.frame = CGRect(x: 0, y: CGFloat(50*(objmessages.count)), width: 150, height: 35)
+        label.frame = CGRect(
+            x: 220,
+            y: CGFloat(50*(objmessages.count)),
+            width: 150,
+            height: 35
+            )
+        
+        if( msg.incoming ){ //If the message was incoming
+            label.backgroundColor = gold_dk
+            label.frame = CGRect(x: 5, y: CGFloat(50*objmessages.count), width: 150, height: 35)
+        }
+        else{       // If the message was outgoing
+            label.backgroundColor = md_grey
+            label.frame = CGRect(x: 220, y: CGFloat(45*objmessages.count), width: 150, height: 35)
+            
+        }
+        
+        //label.backgroundColor = md_grey
+        label.textColor = .white 
+        
+        //flag color
+        //label.backgroundColor = red
+        
         mainScrollView.contentSize.height += CGFloat(50)
         mainScrollView.addSubview(label)
         
+        //messages.append(textmessage)
         
+        //let temp = message(text: textmessage)
         
-        messages.append(textmessage)
-        
-        let temp = message(text: textmessage)
-        
-        objmessages.append(temp)
+        objmessages.append(msg)
         
         bottomScroll()
         
@@ -220,7 +263,10 @@ class messageViewController: UIViewController, UITextFieldDelegate {
             // render non-message on UI
         } else {
             // render message
-            renderMessage(textmessage: event.content, isOwnMessage: false)
+           // renderMessage(textmessage: event.content, isOwnMessage: false)
+            let temp = message(text: event.content)
+            temp.incoming = true
+            renderMessage(msg: temp)
         }
     }
     
